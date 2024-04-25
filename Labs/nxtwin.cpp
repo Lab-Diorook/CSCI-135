@@ -1,0 +1,74 @@
+/*
+Author: David Hou
+Email: david.houfeng85@myhunter.cuny.edu
+Course: CSCI-135
+Instructor: Tong Yi
+Assignment: Lab 5F
+
+[description]
+.
+.
+*/
+
+#include <iostream>
+using namespace std;
+
+int nextTwinPrime(int n);
+
+int main(){
+    cout << nextTwinPrime(1) << endl;
+    return 0;
+}
+
+bool isPrime(int n){
+    int i;
+    bool isPrime = true;
+    
+    if (n <= 1){
+        isPrime = false;
+    }
+    // 0 and 1 are not prime numbers
+    else {
+        for (i = 2; i <= n / 2; ++i) {
+            if (n % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+    }
+    if (isPrime){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+bool isTwinPrime(int n){
+    cin >> n;
+
+    if (isPrime(n)){
+        if (isPrime(n - 2) || isPrime(n +2)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    return false; 
+}
+
+int nextTwinPrime(int N){
+
+    int prime = N;
+    bool found = false;
+
+    while (!found){
+        prime++;
+        if (isTwinPrime(prime)){
+            found = true;
+        }
+    }
+    return prime;
+}
